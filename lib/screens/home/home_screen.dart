@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/api/fetch_weather.dart';
 import 'package:weather_app/components/city_header.dart';
+import 'package:weather_app/components/hourly_widget.dart';
 import 'package:weather_app/constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -68,27 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           gradient: KPrimaryGradient,
                         ),
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemCount:
-                                globalController.weatherdata.hourly?.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                          dateConverter("${globalController.weatherdata.hourly?.elementAt(index).dt}")),
-                                      Text(
-                                          "${globalController.weatherdata.hourly?.elementAt(index).temp}°c")
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
+                        child: HourlyWidget(),
                       ),
                     ),
                   ],
@@ -96,11 +77,5 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
       ),
     );
-  }
-
-  dateConverter(String unixDate) {
-    var convert = DateTime.fromMillisecondsSinceEpoch(int.parse(unixDate) * 1000);
-    String date = DateFormat("Hm").format(convert);
-    return date;
   }
 }
