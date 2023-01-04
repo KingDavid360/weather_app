@@ -1,8 +1,16 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/api/fetch_weather.dart';
-import 'package:weather_app/model/weather_data.dart';
-import 'package:weather_app/model/weather_data_current.dart';
+
+import 'package:weather_app/model/weather_model.dart';
+import 'package:get/get.dart';
+import 'package:weather_app/api/api_key_data.dart';
+import 'package:http/http.dart' as http;
+import 'package:weather_app/model/weather_model.dart';
+
 
 class GlobalController extends GetxController {
   //create various variables
@@ -15,17 +23,14 @@ class GlobalController extends GetxController {
   RxDouble getLatitude() => _latitude;
   RxDouble getLongitude() => _longitude;
 
-  final weatherData = WeatherData().obs;
-  WeatherData getData() {
-    return weatherData.value;
-  }
+   WeatherModel weatherdata = WeatherModel();
 
   @override
   void onInit() {
+    super.onInit();
     if (_isLoading.isTrue) {
       getLocation();
     }
-    super.onInit();
   }
 
   getLocation() async {
@@ -56,12 +61,17 @@ class GlobalController extends GetxController {
       _latitude.value = value.latitude;
       _longitude.value = value.longitude;
 
+      // 6.666568502588258, 3.3147528824354686
       return FetchWeatherApi()
           .processData(value.latitude, value.longitude)
           .then((value) {
-        weatherData.value = value;
+        weatherdata = value;
         _isLoading.value = false;
       });
+      
     });
   }
+
+
+
 }

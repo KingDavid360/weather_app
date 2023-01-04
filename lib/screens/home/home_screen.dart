@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/api/fetch_weather.dart';
 import 'package:weather_app/components/city_header.dart';
 import 'package:weather_app/constants.dart';
 import 'package:http/http.dart' as http;
@@ -22,26 +24,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late String lat;
-  late String long;
-
   @override
   final GlobalController globalController =
       Get.put(GlobalController(), permanent: true);
-
-  void getData() async {
-    http.Response response;
-    response = await http.get(
-      Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    );
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           // for our current temp
                           CurrentWeatherWidget(
-                            weatherDataCurrent:
-                                globalController.getData().getCurrentWeather(),
+                            weatherDataCurrent: globalController.weatherdata,
                           )
                         ],
                       ),
@@ -84,6 +68,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           gradient: KPrimaryGradient,
                         ),
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount:
+                                globalController.weatherdata.hourly?.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                          dateConverter("${globalController.weatherdata.hourly?.elementAt(index).dt}")),
+                                      Text(
+                                          "${globalController.weatherdata.hourly?.elementAt(index).temp}°c")
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
                       ),
                     ),
                   ],
@@ -91,5 +96,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
       ),
     );
+  }
+
+  dateConverter(String unixDate) {
+    var convert = DateTime.fromMillisecondsSinceEpoch(int.parse(unixDate) * 1000);
+    String date = DateFormat("Hm").format(convert);
+    return date;
   }
 }

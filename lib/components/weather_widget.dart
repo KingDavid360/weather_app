@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/model/weather_data_current.dart';
+import 'package:weather_app/model/weather_model.dart';
 
 class CurrentWeatherWidget extends StatelessWidget {
-  final WeatherDataCurrent weatherDataCurrent;
+  final WeatherModel weatherDataCurrent;
 
   const CurrentWeatherWidget({Key? key, required this.weatherDataCurrent})
       : super(key: key);
@@ -25,7 +25,7 @@ class CurrentWeatherWidget extends StatelessWidget {
           children: [
             Flexible(
               child: Text(
-                '${weatherDataCurrent.current.weather![0].description}',
+                '${weatherDataCurrent.current!.weather![0].description}',
                 style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
@@ -37,7 +37,7 @@ class CurrentWeatherWidget extends StatelessWidget {
               child: RichText(
                   text: TextSpan(children: [
                 TextSpan(
-                  text: '${weatherDataCurrent.current.temp!.toInt()}°',
+                  text: '${weatherDataCurrent.current!.temp!.toInt()}°',
                   style: const TextStyle(
                       fontSize: 95,
                       fontWeight: FontWeight.w400,
