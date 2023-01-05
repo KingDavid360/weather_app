@@ -13,28 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c7242a4-a459-4881-ae37-a88ae0a3335f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/images/01d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/01n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/02d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/02n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/03d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/03n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/04d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/04n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/09d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/09n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/10d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/10n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/11d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/11n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/13d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/13n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/50d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/50n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/unknown.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/components/hourly_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/weather_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/weather_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/hourly_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/hourly_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/home/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/home_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

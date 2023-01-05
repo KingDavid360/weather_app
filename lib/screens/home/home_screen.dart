@@ -69,7 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           gradient: KPrimaryGradient,
                         ),
-                        child: HourlyWidget(),
+                        child: Stack(
+                          alignment: AlignmentDirectional.topCenter,
+                          children: [
+                            CityHeader(), // just for testing the stack
+                            HourlyWidget(),
+                          ],
+                        ),
                       ),
                     ),
                   ],
