@@ -16,8 +16,8 @@ class HourlyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 30.0,
-        bottom: 30.0,
+        top: 80.0,
+        bottom: 80.0,
       ),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -32,9 +32,8 @@ class HourlyWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: KPrimaryGradient,
                   borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20), bottom: Radius.circular(20)),
+                      top: Radius.circular(40), bottom: Radius.circular(40)),
                   border: Border.all(
-                    width: 5,
                     color: Colors.grey.withOpacity(0.15),
                   ),
                 ),
