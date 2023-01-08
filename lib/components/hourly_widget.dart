@@ -5,10 +5,16 @@ import 'package:intl/intl.dart';
 import 'package:weather_app/constants.dart';
 
 import '../controller/global_controller.dart';
+import '../screens/home/home_screen.dart';
 
-class HourlyWidget extends StatelessWidget {
+class HourlyWidget extends StatefulWidget {
   HourlyWidget({Key? key}) : super(key: key);
 
+  @override
+  State<HourlyWidget> createState() => _HourlyWidgetState();
+}
+
+class _HourlyWidgetState extends State<HourlyWidget> {
   final GlobalController globalController =
       Get.put(GlobalController(), permanent: true);
 
@@ -16,7 +22,7 @@ class HourlyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 80.0,
+        top: 90.0,
         bottom: 80.0,
       ),
       child: ListView.builder(
@@ -30,7 +36,8 @@ class HourlyWidget extends StatelessWidget {
                 height: 50,
                 width: 100,
                 decoration: BoxDecoration(
-                  gradient: KPrimaryGradient,
+                  gradient: backgroundColor(
+                      "${globalController.weatherdata.current!.weather![0].description}"),
                   borderRadius: BorderRadius.vertical(
                       top: Radius.circular(40), bottom: Radius.circular(40)),
                   border: Border.all(
@@ -57,7 +64,7 @@ class HourlyWidget extends StatelessWidget {
                       "${globalController.weatherdata.hourly?.elementAt(index).temp}°c",
                       style:
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -116,7 +123,7 @@ weatherImage(String icon) {
       return "images/13d.png";
 
     case "13n":
-      return Image.asset("images/13n.png");
+      return "images/13n.png";
 
     case "50d":
       return "images/50d.png";

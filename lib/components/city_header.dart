@@ -43,17 +43,27 @@ class _CityHeaderState extends State<CityHeader> {
         Container(
           child: Text(
             city,
-            style: const TextStyle(
-                fontSize: 35, fontWeight: FontWeight.w500, color: Colors.white),
+            style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.w500,
+                color: globalController
+                            .weatherdata.current!.weather![0].description ==
+                        "mist"
+                    ? Colors.black.withOpacity(0.6)
+                    : Colors.white),
           ),
         ),
         Container(
           child: Text(
             date,
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: Colors.white70,
+                color: globalController
+                            .weatherdata.current!.weather![0].description ==
+                        "mist"
+                    ? Colors.black.withOpacity(0.6)
+                    : Colors.white70,
                 height: 1.5),
           ),
         ),

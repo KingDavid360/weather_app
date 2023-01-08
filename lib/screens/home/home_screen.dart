@@ -1,19 +1,12 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_app/api/fetch_weather.dart';
 import 'package:weather_app/components/city_header.dart';
+import 'package:weather_app/components/daily_widget.dart';
+import 'package:weather_app/components/day_week_indicator.dart';
 import 'package:weather_app/components/hourly_widget.dart';
 import 'package:weather_app/constants.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/controller/global_controller.dart';
-import 'package:weather_app/providers/location_provider.dart';
 
 import '../../components/weather_widget.dart';
 
@@ -39,9 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(),
               )
             : Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("images/sunny.jpeg"),
+                    image: AssetImage(backgroundImage(
+                        "${globalController.weatherdata.current!.weather![0].description}")),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -67,13 +61,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: Size.height * 0.4,
                         width: Size.width,
                         decoration: BoxDecoration(
-                          gradient: KPrimaryGradient,
+                          gradient: backgroundColor(
+                              "${globalController.weatherdata.current!.weather![0].description}"),
                         ),
                         child: Stack(
                           alignment: AlignmentDirectional.topCenter,
                           children: [
-                            CityHeader(), // just for testing the stack
-                            HourlyWidget(),
+                            // CityHeader(), // just for testing the stack
+                            DayWeekIndicator(),
+                            globalController.dayWeekIndicator.value == true
+                                ? HourlyWidget()
+                                : DailyWidget()
                           ],
                         ),
                       ),
@@ -83,5 +81,39 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
       ),
     );
+  }
+}
+
+backgroundImage(String imageName) {
+  switch (imageName) {
+    case "broken clouds":
+      return "images/broken_clouds.jpeg";
+    case "mist":
+      return "images/mist.jpeg";
+    case "overcast clouds":
+      return "images/cloudy.jpeg";
+    case "rainy":
+      return "images/rainy.jpeg";
+    case "thunder":
+      return "images/thunder.jpeg";
+    default:
+      return "images/sunny.jpeg";
+  }
+}
+
+backgroundColor(String imageName) {
+  switch (imageName) {
+    case "broken clouds":
+      return KBrokenCloudsGradient;
+    case "mist":
+      return KMistGradient;
+    case "overcast clouds":
+      return KCloudyGradient;
+    case "rainy":
+      return KRainy;
+    case "thunder":
+      return KCloudyGradient;
+    default:
+      return KPrimaryGradient;
   }
 }
