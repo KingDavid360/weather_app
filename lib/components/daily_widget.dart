@@ -24,7 +24,7 @@ class _DailyWidgetState extends State<DailyWidget> {
     return Padding(
       padding: const EdgeInsets.only(
         top: 95,
-        bottom: 80,
+        bottom: 75,
       ),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -35,7 +35,7 @@ class _DailyWidgetState extends State<DailyWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Container(
                 height: 50,
-                width: 110,
+                width: 120,
                 decoration: BoxDecoration(
                   gradient: backgroundColor(
                       "${globalController.weatherdata.current!.weather![0].description}"),

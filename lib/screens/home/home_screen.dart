@@ -94,6 +94,8 @@ backgroundImage(String imageName) {
       return "images/cloudy.jpeg";
     case "rainy":
       return "images/rainy.jpeg";
+    case "light rain":
+      return "images/rainy.jpeg";
     case "thunder":
       return "images/thunder.jpeg";
     default:
@@ -110,6 +112,8 @@ backgroundColor(String imageName) {
     case "overcast clouds":
       return KCloudyGradient;
     case "rainy":
+      return KRainy;
+    case "light rain":
       return KRainy;
     case "thunder":
       return KCloudyGradient;
